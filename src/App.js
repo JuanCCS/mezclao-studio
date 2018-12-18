@@ -1,13 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import HomePage from './home/HomePage';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+    fontFamily: [
+      'Montserrat',
+      'Roboto',
+      'Helvetica'
+    ].join(','),
+  },
+});
+
+
+const Container = styled.div`
+  width: 100%;
+  min-height: 100%;
+`;
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-
-      </div>
+      <MuiThemeProvider theme={theme}>
+        <Container>
+          <HomePage>
+          </HomePage>
+        </Container>
+      </MuiThemeProvider>
     );
   }
 }
