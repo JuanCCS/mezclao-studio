@@ -5,7 +5,10 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  display: flex;
+  background-color: #E96BBC;
+  flex-direction: column;
 `;
 
 class HomePage extends Component {

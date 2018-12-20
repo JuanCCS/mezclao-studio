@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
+import BannerSlide from './BannerSlide';
 import styled from 'styled-components';
 
-const Container = styled.div`
+const RootContainer = styled.div`
   width: 100%;
-  min-height: 100%;
+  flex-grow: 30;  
+  background-color: #E96BBC;
 `;
 
-class App extends Component {
+class Banner extends Component {
   render() {
     return (
-      <Container>
-      </Container>
+      <RootContainer>
+        <BannerSlide></BannerSlide>
+        <BannerSlide></BannerSlide>
+      </RootContainer>
     );
   }
 }
 
-export default App;
+export default Banner;
