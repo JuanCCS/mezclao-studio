@@ -12,6 +12,11 @@ const Container = styled.div`
 `;
 
 class HomePage extends Component {
+  
+  constructor(props){
+    super(props);
+  }
+  
   render() {
     return (
         <Container>
