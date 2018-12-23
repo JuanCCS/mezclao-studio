@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import HomePage from './home/HomePage';
+import PortfolioPage from './portfolio/PortfolioPage';
+import AboutPage from './about/AboutPage';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import ShopPage from './shop/ShopPage';
+import ContactPage from './contact/ContactPage';
 
 const theme = createMuiTheme({
   typography: {
@@ -49,6 +53,10 @@ class App extends Component {
         <Container height={this.state.height}>
           <HomePage>
           </HomePage>
+          <PortfolioPage></PortfolioPage>
+          <AboutPage></AboutPage>
+          <ShopPage></ShopPage>
+          <ContactPage></ContactPage>
         </Container>
       </MuiThemeProvider>
     );

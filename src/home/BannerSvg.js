@@ -13,6 +13,7 @@ const RootContainer = styled.div`
 const styledImg = styled.img`
   width: ${props => props.width ? props.width + 'px' : "0px"};
   position: absolute;
+  filter: drop-shadow( -5px -5px 5px #000 );
 `
 const SvgImage = posed(styledImg)({
 });

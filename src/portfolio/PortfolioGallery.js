@@ -2,23 +2,21 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import posed from 'react-pose';
 
+const RootContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: ${props => props.zIndex ? props.zIndex : 0};
+`;
+
 const styledImg = styled.img`
   width: ${props => props.width ? props.width + 'px' : "0px"};
   position: absolute;
-  bottom: 0;
-  right: 0;
-  filter: drop-shadow( -1px -1px 2px #555 );
 `
 const SvgImage = posed(styledImg)({
-    start: {
-        opacity: 0
-    },
-    loaded: {
-        opacity: 1
-    }
 });
 
-class WomanSvg extends Component {
+class PortfolioGallery extends Component {
 
   constructor(props) {
     super(props);
@@ -38,18 +36,24 @@ class WomanSvg extends Component {
 
     const{
       width,
+      startObj,
+      endObj,
       path
     } = this.props;
 
     return (
+      <RootContainer>
         <SvgImage 
           src={path}
           pose={this.state.start ? 'start' : 'loaded'}
           width={width}
+          startObj={startObj}
+          endObj={endObj}
           >
         </SvgImage>
+      </RootContainer>
     );
   }
 }
 
-export default WomanSvg;
+export default PortfolioGallery;

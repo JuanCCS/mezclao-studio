@@ -10,12 +10,12 @@ const RootContainer = styled.div`
   flex-grow: 30;
   background-color: #E96BBC;
   position: relative;
+  max-height: 100% !important;
 `;
 
 const CardContainer = styled.div`
   width: 100%;
-  height: 100%;
-  padding-top: 30px;
+  height: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,7 +40,7 @@ class Banner extends Component {
           {/* 
           <InstagramCard></InstagramCard>
           */}
-          <TwitterCard></TwitterCard>
+          <InstagramCard></InstagramCard>
         </CardContainer>
       </RootContainer>
     );

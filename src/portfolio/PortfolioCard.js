@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import BannerSlide from './BannerSlide';
 import {
     Card,
     CardHeader,
@@ -11,9 +10,11 @@ import {
 } from '@material-ui/core'
 
 import FavoriteIcon from '@material-ui/icons/Favorite'
+import PortfolioGallery from './PortfolioGallery';
 
 const StyledCard = styled(Card)`
     width: 90%;
+    flex-grow: 1;
     max-width: 640px;
     border-radius: none !important;
 `
@@ -26,18 +27,9 @@ const StyledCardHeader = styled(CardHeader)`
 `;
 
 /**
- * 
- * Card that renders an Instagram post sort of 
- * 
- * @TODO Fix Animations
- * @TODO Fix Shadows
- * @TODO Implement Switch Post on Like
- * @TODO Implement like counter
- * @TODO Fix Colors
- * @TODO Implement Banner State Machine
- * @TODO Vertical Align Center in Container
+ * Card that renders an Portfolio Card sort of
  */
-class InstagramCard extends React.Component {
+class PortfolioCard extends React.Component {
 
     switchCards(){
         console.log('Switch Cards');
@@ -55,26 +47,14 @@ class InstagramCard extends React.Component {
                     title="@ m e z c l a o . s t u d i o"
                     subheader="September 14, 2016"
                 />
-                <SlideContainer>
-                    <BannerSlide></BannerSlide>
-                </SlideContainer>
-                <CardActions>
-                    <IconButton aria-label="Add to favorites" onClick={this.switchCards}>
-                        <FavoriteIcon />
-                    </IconButton>
-                    <IconButton aria-label="Add to favorites">
-                        <FavoriteIcon />
-                    </IconButton>
-                    <IconButton aria-label="Add to favorites">
-                        <FavoriteIcon />
-                    </IconButton>
-                </CardActions>
+                <PortfolioGallery>
+                </PortfolioGallery>
+               
                 <CardContent>
-                    3 4 . l i k e s
                     <span> @ m e z c l a o . s t u d i o </span> # p l a y . # p a t t e r n . # s h a p e
                 </CardContent>
             </StyledCard>);
     }
 }
 
-export default InstagramCard;
+export default PortfolioCard;
