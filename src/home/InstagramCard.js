@@ -15,6 +15,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 const StyledCard = styled(Card)`
     width: 90%;
     max-width: 640px;
+    height: 90%;
+    margin-top: 30px;
     border-radius: none !important;
 `
 const SlideContainer = styled.div`

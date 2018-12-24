@@ -37,9 +37,7 @@ class Banner extends Component {
     return (
       <RootContainer ref={ (node) => this.divElement = node}>
         <CardContainer>
-          {/* 
-          <InstagramCard></InstagramCard>
-          */}
+
           <InstagramCard></InstagramCard>
         </CardContainer>
       </RootContainer>
