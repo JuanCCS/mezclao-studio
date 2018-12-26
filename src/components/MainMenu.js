@@ -18,6 +18,9 @@ const LogoTypography = styled(Typography)`
 const Root = styled.div`
     flex-grow: 0;
     z-index: 10;
+    position: absolute;
+    top: 0;
+    width: 100%;
 `;
 
 const AnimatedRoot = posed(Root)({

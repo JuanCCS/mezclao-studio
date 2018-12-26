@@ -9,6 +9,8 @@ const Container = styled.div`
   display: flex;
   background-color: #E96BBC;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 class HomePage extends Component {
@@ -20,10 +22,7 @@ class HomePage extends Component {
   render() {
     return (
         <Container>
-          <MainMenu>
-          </MainMenu>
-          <Banner>
-          </Banner>
+          <Banner />
         </Container>
     )
   }

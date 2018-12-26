@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import BannerSlide from './BannerSlide';
 import styled from 'styled-components';
 import InstagramCard from './InstagramCard';
-import TwitterCard from './TwitterCard';
 
 
 const RootContainer = styled.div`

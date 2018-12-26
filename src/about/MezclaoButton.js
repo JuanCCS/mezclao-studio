@@ -9,7 +9,7 @@ const Container = styled(Paper)`
   position: absolute;
   background-color: white;
   top: 33%;
-  right: -25px;
+  right: -10px;
   z-index: 15;
 `;
 
