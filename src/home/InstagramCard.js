@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import BannerSlide from './BannerSlide';
+import BannerSlide from './BannerSlideOne';
 import {
     Card,
     CardHeader,

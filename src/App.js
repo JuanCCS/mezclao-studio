@@ -21,6 +21,9 @@ const theme = createMuiTheme({
   },
 });
 
+const Spacer = styled.div`
+  height: ${props => props.height ? props.height : 0};
+`
 
 const Container = styled.div`
   width: 100%;
@@ -54,14 +57,17 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <Container height={this.state.height}>
-          <LoadingScreen />
+          {/* <LoadingScreen /> */}
           <MainMenu />
-          <HomePage />
+          <Spacer height='56px'></Spacer>
+          <HomePage width={this.state.width}/>
+    {/*
           <PortfolioPage />
           <AboutPage />
           <ShopPage />
           <ContactPage />
           <Footer />
+    */}
         </Container>
       </MuiThemeProvider>
     );

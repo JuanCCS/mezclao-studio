@@ -1,45 +1,48 @@
 import React, { Component } from 'react';
-import BannerSlide from './BannerSlide';
+import BannerSlideOne from './BannerSlideOne';
 import styled from 'styled-components';
-import InstagramCard from './InstagramCard';
-
+import posed from 'react-pose';
+import BannerSlideTwo from './BannerSlideTwo';
+import { green } from '@material-ui/core/colors';
 
 const RootContainer = styled.div`
   width: 100%;
-  flex-grow: 30;
-  background-color: #E96BBC;
+  height: 100%;
+  padding-top: '56px';
   position: relative;
-  max-height: 100% !important;
 `;
 
-const CardContainer = styled.div`
-  width: 100%;
-  height: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+const AnimRootContainer = posed(RootContainer)({
+  start: {
+    background: '#FFF',
+  },
+  show: {
+    background: '#F83C2D',
+  }
+});
 
 class Banner extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      height: 0
+      width: this.props.width,
+      animState: "start"
     }
   }
   componentDidMount(){
-    const myHeight = this.divElement.clientHeight;
-    this.setState({height: myHeight})
+    this.setState({width: this.props.width});
+
+    setTimeout(() => {
+      this.setState({ animState: "show" });
+    }, 1300);
   }
+
   render() {
     return (
-      <RootContainer ref={ (node) => this.divElement = node}>
-        <CardContainer>
-
-          <InstagramCard></InstagramCard>
-        </CardContainer>
-      </RootContainer>
+      <AnimRootContainer pose={this.state.animState? this.state.animState : "start"}>
+        <BannerSlideTwo></BannerSlideTwo>
+      </AnimRootContainer>
     );
   }
 }

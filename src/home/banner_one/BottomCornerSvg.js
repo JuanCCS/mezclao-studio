@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import posed from 'react-pose';
 
 const styledImg = styled.img`
-  width: ${props => props.width ? props.width + 'px' : "0px"};
+  width: 100%; 
   position: absolute;
   bottom: 0;
   right: 0;

@@ -18,7 +18,7 @@ const Container = posed.div({
 const charPoses = {
   exit: { opacity: 0 },
   enter: { opacity: 1 },
-  fullImg: {color: '#143F93'},
+  fullImg: {color: '#FFF'},
   end: {opacity: 0}
 };
 

@@ -3,14 +3,14 @@ import Banner from './Banner';
 import MainMenu from '../components/MainMenu';
 import styled from 'styled-components';
 
+const imgHeight = 608;
+const imgWidth = 1280;
+const paddingTop = 56;
+const ratio = imgHeight/imgWidth;
+
 const Container = styled.div`
   width: 100%;
-  height: 100%;
-  display: flex;
-  background-color: #E96BBC;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: ${props => props.inputHeight ? props.inputHeight : "0%"};
 `;
 
 class HomePage extends Component {
@@ -20,9 +20,11 @@ class HomePage extends Component {
   }
   
   render() {
+    const rootHeight = this.props.width * ratio + paddingTop;
+    console.log(rootHeight);
     return (
-        <Container>
-          <Banner />
+        <Container inputHeight={Math.floor(rootHeight) + 'px'}>
+          <Banner/>
         </Container>
     )
   }

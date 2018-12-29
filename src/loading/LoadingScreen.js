@@ -27,8 +27,8 @@ const SvgContainer = styled.div`
 
 const LeftSvg = styled.object`
   position: absolute;
-  height: 344px;
-  bottom: -44px;
+  height: 308px;
+  bottom: -14px;
   left: 0;
 `
 const RightSvg = styled.object`
@@ -54,7 +54,7 @@ const LoadingSvg = styled.object`
   position: absolute;
   width: 300px;
   left: 0;
-  bottom: -44px;
+  bottom: -13px;
 `;
 
 const AnimLeftSvg = posed(LeftSvg)({
@@ -97,7 +97,7 @@ const AnimatedContainer = posed(Container)({
     background: '#FFF'
   },
   fullImg: {
-    background: '#00A0BE'
+    background: '#443880'
   },
   end: {
     opacity: 0, 
@@ -115,6 +115,8 @@ class LoadingScreen extends Component {
   }
 
   componentDidMount() {
+     // @TODO PREVENT SCROLLING
+     // Look into react-scrollock
     setTimeout(() => {
       this.setState({ animState: "enter" });
     }, 1000);
@@ -124,6 +126,10 @@ class LoadingScreen extends Component {
     setTimeout(() => {
       this.setState({ animState: "end" });
     }, 4800);
+    setTimeout(() => {
+      // @TODO ENABLE SCROLLING
+      // Look into react-scrollock
+    }, 5200);
   }
 
   render() {

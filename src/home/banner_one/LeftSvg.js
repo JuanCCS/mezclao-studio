@@ -7,7 +7,6 @@ const styledImg = styled.img`
   height: 100%;
   position: absolute;
   left: 0;
-  top: 0;
   bottom: 0;
 `
 const SvgImage = posed(styledImg)({

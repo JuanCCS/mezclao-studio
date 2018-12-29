@@ -3,11 +3,10 @@ import styled from 'styled-components';
 import posed from 'react-pose';
 
 const styledImg = styled.img`
-  width: ${props => props.width ? props.width + 'px' : "0px"};
+  width: 91%;
   position: absolute;
   bottom: 0;
   right: 0;
-  filter: drop-shadow( -1px -1px 2px #555 );
 `
 const SvgImage = posed(styledImg)({
     start: {
