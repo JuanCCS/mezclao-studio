@@ -1,34 +1,31 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import {
-    Card,
-    CardHeader,
-    Avatar,
-    CardActions,
-    IconButton,
-    CardContent
+    Paper,
+    Grid,
+    Typography
 } from '@material-ui/core'
 
 import PortfolioGallery from './PortfolioGallery';
 import globals from '../globals';
 
-const CardContainer = styled.div`
-    flex-grow: 1;
-    width: 90%;
-    max-width: 640px;
-    display: flex;
-    flex-direction: column;
+const FlexContainer = styled.div`
+    height: 100%;
+    padding: 20px;
 `
 
-const StyledCard = styled(Card)`
-    max-height: 80px;
-`
-const SlideContainer = styled.div`
-    height: 304px;
+const PortfolioPaper = styled(Paper)`
     width: 100%;
+    height: 90%;
 `
-const StyledCardHeader = styled(CardHeader)`
-`;
+
+const StyledGridRow = styled(Grid)`
+    height: 100%;
+`
+
+const ImgContainer = styled(Grid)`
+
+`
 
 /**
  * Card that renders an Portfolio Card sort of
@@ -57,38 +54,25 @@ class PortfolioCard extends React.Component {
 
     render() {
         return (
-            <CardContainer>
-            <StyledCard>
-                <StyledCardHeader
-                    avatar={
-                        <Avatar src="favicon.ico">
-                        </Avatar>
-                    }
-
-                    title="@ m e z c l a o . s t u d i o"
-                    subheader="September 14, 2016"
-                />
-
-            </StyledCard>
-            <PortfolioGallery 
-                currentClient={this.state.currentClient} 
-                pics={this.state.pics}              
-                initialPic={this.state.pics[0]}>
-            </PortfolioGallery>
-            <StyledCard>
-                <StyledCardHeader
-                    avatar={
-                        <Avatar src="favicon.ico">
-                        </Avatar>
-                    }
-
-                    title={this.props.currentClient}
-                    subheader="September 14, 2016"
-                />
-
-            </StyledCard>
-            </CardContainer>);
+            <FlexContainer>
+                <PortfolioPaper>
+                    <StyledGridRow container spacing={24}>
+                        <Grid item md={6} sm={12}>
+                            <PortfolioGallery 
+                                currentClient={this.state.currentClient} 
+                                pics={this.state.pics}              
+                                initialPic={this.state.pics[0]}>
+                            </PortfolioGallery>
+                        </Grid>
+                        <Grid item md={6} sm={12}>
+                            <Paper>
+                                <Typography>ABCDE</Typography>
+                            </Paper>
+                        </Grid>
+                    </StyledGridRow>
+                </PortfolioPaper>
+            </FlexContainer>
+        );
     }
 }
-
 export default PortfolioCard;

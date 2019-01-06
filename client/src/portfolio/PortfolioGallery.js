@@ -4,31 +4,24 @@ import posed from 'react-pose';
 import globals from '../globals';
 
 const RootContainer = styled.div`
-  width: 100%;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100%;
 `;
 
 const CurrentImageContainer = styled.div`
-  flex-grow: 1;
-  width: 100%;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `
 
 const CurrentImage = styled.img`
-  width: 60%;
-  max-height: 100%;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   background: white;
+  max-width: 80%;
+  max-height: 80%;
 `
 
-const AnimatedImgae = posed(CurrentImage)({
+const AnimatedImage = posed(CurrentImage)({
   start: {
     opacity: 0,
   },
@@ -93,14 +86,10 @@ class PortfolioGallery extends Component {
   render() {
     let picPath = globals.serverUrl + '/pics/' + this.props.currentClient + '/' + this.state.currentPic;
     return (
-      <RootContainer> 
-        <Spacer height='20px'></Spacer>
-        <CurrentImageContainer>
-          <AnimatedImgae pose={this.state.animState} src={this.state.currentPic ? picPath: 'favicon.ico'}>
-          </AnimatedImgae>
-        </CurrentImageContainer>
-        <Spacer height='20px'></Spacer>
-      </RootContainer>
+      <RootContainer>
+          <AnimatedImage pose={this.state.animState} src={this.state.currentPic ? picPath: 'favicon.ico'}>
+          </AnimatedImage>
+          </RootContainer>
     );
   }
 }

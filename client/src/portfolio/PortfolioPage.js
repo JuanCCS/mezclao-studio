@@ -9,12 +9,8 @@ import globals from '../globals';
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
   background: url('images/backgrounds/Portfolio_Bg.jpg');
   background-size: cover;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `;
 
 /**
@@ -62,9 +58,9 @@ class PortfolioPage extends Component {
     const { clients, currentClient } = this.state;
     return (
         <Container>
-            <PortfolioProgress clients={clients} currentClient={currentClient}></PortfolioProgress>
+{/*            <PortfolioProgress clients={clients} currentClient={currentClient}></PortfolioProgress> */}
             <PortfolioCard currentClient={this.state.currentClient}></PortfolioCard>
-            <PortfolioButtons></PortfolioButtons>
+            {/* <PortfolioButtons></PortfolioButtons> */}
         </Container>
     )
   }
