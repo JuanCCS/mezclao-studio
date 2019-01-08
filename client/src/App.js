@@ -7,6 +7,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import ShopPage from './shop/ShopPage';
 import ContactPage from './contact/ContactPage';
 import Footer from './footer/Footer'
+import HeadingSeparator from './components/HeadingSeparator';
 import MainMenu from './components/MainMenu';
 import LoadingScreen from './loading/LoadingScreen';
 
@@ -61,10 +62,13 @@ class App extends Component {
           <MainMenu />
           <Spacer height={this.state.width > 600? '64px': '56px'}></Spacer>
           <HomePage width={this.state.width}/>
+          <HeadingSeparator text="m y . p o r t f o l i o"/>
 
           <PortfolioPage />
-          {/*
-          <AboutPage />
+
+          <AboutMezclaoPage />
+
+    {/*
           <ShopPage />
           <ContactPage />
           <Footer />

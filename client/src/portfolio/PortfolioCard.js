@@ -8,15 +8,17 @@ import {
 
 import PortfolioGallery from './PortfolioGallery';
 import globals from '../globals';
+import PortfolioClientView from './PortfolioClientView';
 
 const FlexContainer = styled.div`
     height: 100%;
     padding: 20px;
 `
 
-const PortfolioPaper = styled(Paper)`
-    width: 100%;
+const PortfolioPaper = styled.div`
+    width: 80%;
     height: 90%;
+    margin: auto;
 `
 
 const StyledGridRow = styled(Grid)`
@@ -35,7 +37,8 @@ class PortfolioCard extends React.Component {
         super(props)
         this.state = {
             pics: [],
-            currentClient: ''
+            currentClient: '',
+            clientJson: {}
         }
     }
 
@@ -45,7 +48,7 @@ class PortfolioCard extends React.Component {
             fetch(globals.serverUrl + '/clients/' + newClient).then((res)=> {
                 res.json().then((json)=>
                     {
-                        this.setState({pics: json.pics, currentClient: newClient})
+                        this.setState({pics: json.pics, currentClient: newClient, clientJson: json})
                     } 
                 )}
             )
@@ -56,7 +59,7 @@ class PortfolioCard extends React.Component {
         return (
             <FlexContainer>
                 <PortfolioPaper>
-                    <StyledGridRow container spacing={24}>
+                    <StyledGridRow container spacing={8}>
                         <Grid item md={6} sm={12}>
                             <PortfolioGallery 
                                 currentClient={this.state.currentClient} 
@@ -65,9 +68,7 @@ class PortfolioCard extends React.Component {
                             </PortfolioGallery>
                         </Grid>
                         <Grid item md={6} sm={12}>
-                            <Paper>
-                                <Typography>ABCDE</Typography>
-                            </Paper>
+                            <PortfolioClientView clientObj={this.state.clientJson}></PortfolioClientView>
                         </Grid>
                     </StyledGridRow>
                 </PortfolioPaper>
