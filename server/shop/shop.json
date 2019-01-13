@@ -1,0 +1,17 @@
+{
+    "items": [
+    {
+        "shop_name": "Junique",
+        "article_name": "Blue Papaya",
+        "website_url": "https://www.juniqe.com/",
+        "instagram_url": "https://www.instagram.com/juniqeartshop/",
+        "instagram_handle": "juniqeartshop"
+    }, {
+        "shop_name": "East End Prints",
+        "article_name": "Caladium Orchid",
+        "website_url": "https://www.eastendprints.co.uk/",
+        "instagram_url": "https://www.instagram.com/eastendprints/",
+        "instagram_handle": "eastendprints"
+    }
+    ]
+}

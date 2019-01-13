@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import HomePage from './home/HomePage';
 import PortfolioPage from './portfolio/PortfolioPage';
-import AboutPage from './about/AboutPage';
+import AboutPage from './about/AboutMezclaoPage';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import ShopPage from './shop/ShopPage';
 import ContactPage from './contact/ContactPage';
 import Footer from './footer/Footer'
 import HeadingSeparator from './components/HeadingSeparator';
 import MainMenu from './components/MainMenu';
+import AboutMezclaoPage from './about/AboutMezclaoPage';
 import LoadingScreen from './loading/LoadingScreen';
 
 const theme = createMuiTheme({
@@ -65,11 +66,16 @@ class App extends Component {
           <HeadingSeparator text="m y . p o r t f o l i o"/>
 
           <PortfolioPage />
-
+          <HeadingSeparator text="m e e t . m e z c l a o"/>
+        
           <AboutMezclaoPage />
+          <HeadingSeparator text="t h e . s h o p"/>
 
-    {/*
+
+ 
           <ShopPage />
+          <HeadingSeparator text="m e e t . m a r i e r y"/>
+             {/*
           <ContactPage />
           <Footer />
     */}

@@ -9,6 +9,8 @@ app = Sanic()
 CORS(app)
 
 db_path = 'db'
+shop_path = 'shop/shop.json'
+shop_images_path = 'shop_images'
 
 def make_file_route(name,route,res_file):
     @app.route(route)
@@ -52,6 +54,13 @@ def make_server():
     def client_names(req):
         return response.json({'clients': names})
     
+
+    with open(shop_path) as shop_json:
+        data = json.load(shop_json) 
+        @app.route('/shopitems')
+        def shop_items(req):
+            return response.json(data)
+
     app.run(host='localhost', port=8000)
 
 if __name__ == '__main__':  
