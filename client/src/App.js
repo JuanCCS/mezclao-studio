@@ -11,6 +11,7 @@ import HeadingSeparator from './components/HeadingSeparator';
 import MainMenu from './components/MainMenu';
 import AboutMezclaoPage from './about/AboutMezclaoPage';
 import LoadingScreen from './loading/LoadingScreen';
+import AboutMarieryPage from './about/AboutMarieryPage';
 
 const theme = createMuiTheme({
   typography: {
@@ -59,7 +60,7 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <Container height={this.state.height}>
-          {/* <LoadingScreen /> */}
+          <LoadingScreen />
           <MainMenu />
           <Spacer height={this.state.width > 600? '64px': '56px'}></Spacer>
           <HomePage width={this.state.width}/>
@@ -75,8 +76,11 @@ class App extends Component {
  
           <ShopPage />
           <HeadingSeparator text="m e e t . m a r i e r y"/>
-             {/*
+          <AboutMarieryPage></AboutMarieryPage>
+          <HeadingSeparator text="c o n t a c t . m e"/>
+    
           <ContactPage />
+                   {/*
           <Footer />
     */}
         </Container>

@@ -9,9 +9,9 @@ const Container = styled.div`
   height: 100%;
   display: flex;
   background: url('images/backgrounds/Shop_Bg.jpg');
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 `;
 
 /**
@@ -37,7 +37,10 @@ class ShopPage extends Component {
   
   render() {
     const shopItems = this.state.items.map((item)=>{
-      return(<ShopCard key={item.article_name} item={item}/>)
+      return(<ShopCard 
+        key={item.article_name} 
+        item={item}
+        />)
     });
     return (
         <Container>

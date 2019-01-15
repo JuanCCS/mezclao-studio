@@ -54,12 +54,26 @@ def make_server():
     def client_names(req):
         return response.json({'clients': names})
     
+    for f in os.listdir('./shop_images'):
+        r = f.replace(" ","")
+        if( r != f):
+            os.rename(os.path.join('./shop_images',f),os.path.join('./shop_images',r))
 
     with open(shop_path) as shop_json:
-        data = json.load(shop_json) 
+        shop_data = json.load(shop_json) 
+        shop_route = './shop_images'
+
+        for shop in shop_data['items']:
+            item_name = shop['article_name'] + shop['shop_name']
+            item_name = item_name.replace(" ","")
+            pic_path = os.path.join(shop_route, item_name+'.jpg')
+            pic_route = os.path.join('shop_pics', item_name)
+            shop['background_url'] = pic_route
+            make_file_route(item_name, pic_route, pic_path)
+
         @app.route('/shopitems')
         def shop_items(req):
-            return response.json(data)
+            return response.json(shop_data)
 
     app.run(host='localhost', port=8000)
 

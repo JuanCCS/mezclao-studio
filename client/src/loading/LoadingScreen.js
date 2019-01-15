@@ -5,6 +5,7 @@ import AnimatedText from './AnimatedText';
 import AnimatedSvg from './AnimatedSvg';
 import SplitText from 'react-pose-text';
 import { withTheme } from '@material-ui/core';
+import ScrollLock from 'react-scrolllock';
 
 const Container = styled.div`
   z-index: 20;
@@ -110,7 +111,8 @@ class LoadingScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      animState: "start"
+      animState: "start",
+      lockScroll: true
     }
   }
 
@@ -127,8 +129,9 @@ class LoadingScreen extends Component {
       this.setState({ animState: "end" });
     }, 4800);
     setTimeout(() => {
-      // @TODO ENABLE SCROLLING
-      // Look into react-scrollock
+
+      this.setState({lockScroll: false})
+      
     }, 5200);
   }
 
@@ -144,6 +147,8 @@ class LoadingScreen extends Component {
         </SvgContainer>
         <Spacer height={'50px'}></Spacer>
         <AnimatedText></AnimatedText>
+
+        {this.state.lockScroll ? <ScrollLock /> : null}
 
       </AnimatedContainer>
     )
