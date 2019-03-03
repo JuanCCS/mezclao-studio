@@ -55,24 +55,27 @@ class PortfolioCard extends React.Component {
         }
     }   
 
+
     render() {
+        const scrollY = this.props.y;
+        const ReturnValue = (<FlexContainer>
+            <PortfolioPaper>
+                <StyledGridRow container spacing={8}>
+                    <Grid item md={6} sm={12}>
+                        <PortfolioGallery 
+                            currentClient={this.state.currentClient} 
+                            pics={this.state.pics}              
+                            initialPic={this.state.pics[0]}>
+                        </PortfolioGallery>
+                    </Grid>
+                    <Grid item md={6} sm={12}>
+                        <PortfolioClientView clientObj={this.state.clientJson}></PortfolioClientView>
+                    </Grid>
+                </StyledGridRow>
+            </PortfolioPaper>
+        </FlexContainer>)
         return (
-            <FlexContainer>
-                <PortfolioPaper>
-                    <StyledGridRow container spacing={8}>
-                        <Grid item md={6} sm={12}>
-                            <PortfolioGallery 
-                                currentClient={this.state.currentClient} 
-                                pics={this.state.pics}              
-                                initialPic={this.state.pics[0]}>
-                            </PortfolioGallery>
-                        </Grid>
-                        <Grid item md={6} sm={12}>
-                            <PortfolioClientView clientObj={this.state.clientJson}></PortfolioClientView>
-                        </Grid>
-                    </StyledGridRow>
-                </PortfolioPaper>
-            </FlexContainer>
+            scrollY > 400 ? ReturnValue: <div></div>
         );
     }
 }

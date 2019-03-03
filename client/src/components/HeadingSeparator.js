@@ -7,7 +7,6 @@ import {Typography} from '@material-ui/core'
 const Container = styled.div`
     height: 77px;
     width: 100%;
-    background: white;
 `
 
 const StyledHeading = styled.h2`
@@ -15,7 +14,7 @@ const StyledHeading = styled.h2`
     font-family: Montserrat, Roboto;
     font-weight: 300;
     display: flex;
-    color: black;
+    color: white;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -23,7 +22,6 @@ const StyledHeading = styled.h2`
 
     &:before, &:after{
         content: '';
-        border-top: 3px solid black;
         margin: 0 20px 0 0;
         flex: 1 0 20px;
     }

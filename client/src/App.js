@@ -12,6 +12,7 @@ import MainMenu from './components/MainMenu';
 import AboutMezclaoPage from './about/AboutMezclaoPage';
 import LoadingScreen from './loading/LoadingScreen';
 import AboutMarieryPage from './about/AboutMarieryPage';
+import ViewportContext from './components/ViewportContext.js';
 
 const theme = createMuiTheme({
   typography: {
@@ -23,6 +24,7 @@ const theme = createMuiTheme({
     ].join(','),
   },
 });
+
 
 const Spacer = styled.div`
   height: ${props => props.height ? props.height : 0};
@@ -39,28 +41,37 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { width: 0, height: 0 };
+    this.state = { width: 0, height: 0 , scrollY: 0};
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
+  
+  handleScroll(event){
+    this.setState({scrollY: window.scrollY});
+  }
 
   render() {
     return (
       <MuiThemeProvider theme={theme}>
+      <ViewportContext.Provider value={this.state.scrollY}>
         <Container height={this.state.height}>
-          <LoadingScreen />
+           <LoadingScreen /> 
+         
           <MainMenu />
           <Spacer height={this.state.width > 600? '64px': '56px'}></Spacer>
           <HomePage width={this.state.width}/>
@@ -80,10 +91,9 @@ class App extends Component {
           <HeadingSeparator text="c o n t a c t . m e"/>
     
           <ContactPage />
-                   {/*
           <Footer />
-    */}
         </Container>
+        </ViewportContext.Provider>
       </MuiThemeProvider>
     );
   }

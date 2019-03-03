@@ -61,7 +61,7 @@ const AboutPaper = styled(Paper)`
   position: absolute;
   max-width: 640px;
   width: 80%;
-  height: 60%;
+  height:70%;
   margin: auto;
   left: 10%;
   top: 20%;

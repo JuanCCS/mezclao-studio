@@ -43,12 +43,13 @@ class BannerSlideOne extends Component {
   render() {
     return (
       <AnimRootContainer>
-      <Container>
+      <Container> { /*
           <BottomCornerSvg path="/images/banners/banner_one/bottom_corner_pattern.svg" timeout={600}></BottomCornerSvg>
           <TopSvg path="/images/banners/banner_one/top.svg" timeout={900}></TopSvg>
           <LeftSvg path="/images/banners/banner_one/left_pattern.svg" timeout={1100}></LeftSvg>
           <WomanSvg path="/images/banners/banner_one/mujer.svg"  timeout={700}></WomanSvg>
-      </Container>
+      */}
+          </Container>
       </AnimRootContainer>
     );
   }

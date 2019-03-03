@@ -67,7 +67,6 @@ class Banner extends Component {
     return (
       <AnimRootContainer pose={this.state.animState? this.state.animState : "start"}>
         <BannerSlideOne></BannerSlideOne>
-        <BannerSlideTwo></BannerSlideTwo>
       </AnimRootContainer>
     );
   }

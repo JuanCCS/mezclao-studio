@@ -2,17 +2,33 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import ShopCard from './ShopCard';
 import globals from '../globals';
-import { Paper } from '@material-ui/core'
+import { Paper, Grid } from '@material-ui/core'
 
 const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   background: url('images/backgrounds/Shop_Bg.jpg');
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
+  padding-top: 30px;
 `;
+
+const GridContainer = styled(Grid)`
+  height: 60%;
+  padding: 10px;  
+  @media (max-width: 700px) {
+    height: 90%;
+  }
+`
+
+const GridItem = styled(Grid)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
 
 /**
  * Renders the Portfolio Section
@@ -37,14 +53,19 @@ class ShopPage extends Component {
   
   render() {
     const shopItems = this.state.items.map((item)=>{
-      return(<ShopCard 
+      return(
+      <GridItem item xs={12} md={6}>
+      <ShopCard 
         key={item.article_name} 
         item={item}
-        />)
+        />
+        </GridItem>)
     });
     return (
         <Container>
-          {shopItems}
+          <GridContainer container spacing={16}>
+            {shopItems}
+          </GridContainer>
         </Container>
     )
   }

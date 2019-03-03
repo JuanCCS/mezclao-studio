@@ -4,6 +4,7 @@ import PortfolioCard from './PortfolioCard';
 import PortfolioProgress from './PortfolioProgress';
 import PortfolioButtons from './PortfolioButtons';
 import globals from '../globals';
+import ViewportContext from '../components/ViewportContext';
 
 
 const Container = styled.div`
@@ -58,12 +59,16 @@ class PortfolioPage extends Component {
     const { clients, currentClient } = this.state;
     return (
         <Container>
-{/*            <PortfolioProgress clients={clients} currentClient={currentClient}></PortfolioProgress> */}
-            <PortfolioCard currentClient={this.state.currentClient}></PortfolioCard>
-            {/* <PortfolioButtons></PortfolioButtons> */}
+          <ViewportContext.Consumer>
+            {(scrollY) => (
+            <PortfolioCard currentClient={this.state.currentClient} y={scrollY}></PortfolioCard>
+            )}
+          </ViewportContext.Consumer>
         </Container>
     )
   }
 }
+
+PortfolioPage.contextType = ViewportContext;
 
 export default PortfolioPage;

@@ -12,14 +12,19 @@ const Container = styled(Paper)`
     background: url(${props=>props.backgroundColor});
     width: 340px;
     height: 510px;
-    max-height: 510px;
     position: relative;
-    flex-grow: 0;   
+    flex-grow: 0;
+    @media (max-width: 700px) {
+        height: 255px;
+        width: 170px;
+    }
 `
 
 const ItemImg = styled.div`
     background-image: url(${props => props.backgroundUrl});
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     position: absolute;
     z-index: 3;
     left: 0;

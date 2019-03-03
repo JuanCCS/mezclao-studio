@@ -8,7 +8,8 @@ import {
 } from '@material-ui/core'
 
 const MyToolbar = styled(Toolbar)`
-    background-color: #F83C2D;
+    background-color: #f83c2d;
+    box-shadow: none !important;
 `;
 
 const LogoTypography = styled(Typography)`
