@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import { Paper, Typography } from '@material-ui/core';
+import { Paper, Typography, Grid } from '@material-ui/core';
+import HeadingSeparator from '../components/HeadingSeparator'
+import Spacer from '../components/Spacer'
+
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   background-color: #443880;
   flex-direction: column;
@@ -13,59 +15,78 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const RelativeContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
+const Content = styled(Grid)`
+  width: 80% !important;
+  max-width: 80% !important;
+  @media (max-width: 700){
+    width: 90%;
+  }
 `;
 
-const LeftAdornment= styled.object`
-  position: absolute;
-  left: -35;
-  top: 0;
-  margin-top: -20px;
-  height: 118%;
-  z-index: 3;
-`
-const RightAdornment = styled.object`
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  z-index: 4;
+const AboutMezclaoTitle = styled.div`
+  color: white;
+  font-size: 1.5em;
+  letter-spacing: 5px;
+  font-weight: 400;
+  margin-bottom: 5px;
 `
 
-const Pink = styled.object`
-  position: absolute;
-  left: 20%;
-  top: 10%;
-  height: 60%;
-  z-index: 6;
+const AboutMezclaoText = styled.div`
+  padding-left: 10px;
+  padding-top: 10px;
+  color: white;
+  font-weight: 400;
 `
 
-const Background = styled.object`
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  z-index: 1;
+const AboutMezclaoCTA =  styled.div`    
+  color: white;
 `
-const AboutPaper = styled(Paper)`
-  position: absolute;
-  max-width: 640px;
-  width: 80%;
-  height: 60%;
-  margin: auto;
-  left: 10%;
-  top: 20%;
-  z-index: 99;
-  background-color: #1AB687 !important;
-  padding: 20px;
-`;
 
-const WhiteTypography = styled(Typography)`
+const SocialMediaContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 10px;
+`
+
+const social_media = [
+  {
+    handle: '@marieryyoung',
+    link: 'https://instagram.com/marieryyoung',
+    src: 'images/social/instagram.svg'
+  },
+  {
+    handle: '@marieryyoung',
+    link: 'https://instagram.com/marieryyoung',
+    src: 'images/social/twitter.svg'
+  },
+  {
+    handle: '@marieryyoung',
+    link: 'https://instagram.com/marieryyoung',
+    src: 'images/social/dribbble.svg'
+  },
+  {
+    handle: '@marieryyoung',
+    link: 'behance.com/marieryyoung',
+    src: 'images/social/behance.svg'
+  }
+]
+
+const StyledSvg = styled.img`
   color: white !important;
-`;
+  fill: white !important;
+  height: 24px;
+  padding: 5px;
+  margin-right: 2px;
+`
+
+const StyledPortrait = styled.img`
+  width: 100%;
+  @media (max-width: 960px){
+    width: 50%;
+  }
+`
 
 /**
  * Renders the About Section
@@ -78,16 +99,64 @@ class AboutMarieryPage extends Component {
   }
   
   render() {
+    const socialMediaItems = social_media.map((item) => {
+      return(
+        <a href={item.link}>
+          <StyledSvg src={item.src}></StyledSvg>
+        </a>
+      )
+    })
     return (
-        <Container>
-          <RelativeContainer>
-            <Background type="image/svg+xml" data="/images/about_mariery/Background.svg"></Background>
-            <LeftAdornment type="image/svg+xml" data="/images/about_mariery/Left.svg"></LeftAdornment>
-            <RightAdornment type="image/svg+xml" data="/images/about_mariery/Right.svg"></RightAdornment>
-            <Pink type="image/svg+xml" data="/images/about_mariery/Pink.svg"></Pink>
-          </RelativeContainer>
-        </Container>
-    )
+      <Container>
+        <Spacer height='40px'></Spacer>
+       
+        <Content container spacing={16}>
+        <Grid  item xs={12} s={12} md={4} lg={4}>  
+          <StyledPortrait src='images/about_mariery/mariery.jpg' />
+        </Grid>
+          <Grid itemitem xs={12} s={12} md={7} lg={7}>
+          
+        <AboutMezclaoText>
+          <span style={{fontSize: '2em'}}>m e e t . m a r i e r y</span>
+          <br></br>
+          <span style={{fontSize: '1.5em'}}>
+        I´m Mariery Young,
+        <br></br> 
+Nice to meet you! 
+</span>
+<br></br>
+<a style={{color: 'white'}} href="mailto:mariery@mezclaostudio.com">
+ mariery@mezclaostudio.com
+</a>
+<br></br>
+    
+    <SocialMediaContainer>
+      {socialMediaItems}
+    </SocialMediaContainer>
+
+<br></br>
+I´m  a Latin American designer. 
+Bold colors, playful shapes, and tropicals vibes are some of my favorite themes 
+to explore in my projects. My work is inspired by Latin American folklore and biodiversity. 
+<br></br>
+<br></br>
+As  Founder of Mezclao Studio I works on projects on branding identity, 
+illustration and surface design for brands, entrepreneurs and community focused project.
+
+My bold color combos, tropical rainforest backdrops can be found in the projects for clients like Nike, Invision App, Pactimo, Fab.com. And Mother Pukka. 
+
+<br></br>
+<br></br>
+Let´s work together. 
+<br></br>
+<br></br>
+Representation 
+North America :  <a style={{color: 'white'}} href="http://www.sullivanmoore.com/">Sullivan Moore</a>
+        </AboutMezclaoText>
+        </Grid>
+        </Content>
+      </Container>
+  )
   }
 }
 

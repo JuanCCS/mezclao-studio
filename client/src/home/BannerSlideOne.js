@@ -91,13 +91,15 @@ const TucanSvg = styled.object`
 
 const AnimTucanSvg = posed(TucanSvg)({
   loop_enter: {
-    transform: 'rotate(2deg)',
+    x: -2,
+    y: -2,
     transition: {
       duration: 2000
     }
   },
   loop_exit: {
-    transform: 'rotate(-2deg)',
+    x: 2,
+    y: 2,
     transition: {
       duration: 2000
     }

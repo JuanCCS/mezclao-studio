@@ -41,14 +41,14 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { width: 0, height: window.innerHeight, scrollY: 0};
+    this.state = { width: 0, height: window.innerHeight, scrollY: 0 };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
     this.updateWindowDimensions();
-  
+
   }
 
   componentWillUnmount() {
@@ -57,46 +57,41 @@ class App extends Component {
   }
 
   updateWindowDimensions() {
-    this.setState({ width: window.innerWidth, height: window.innerHeight});
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
     window.removeEventListener('resize', this.updateWindowDimensions)
   }
-  
-  handleScroll(event){
-    this.setState({scrollY: window.scrollY});
+
+  handleScroll(event) {
+    this.setState({ scrollY: window.scrollY });
   }
 
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-      <ViewportContext.Provider value={this.state.scrollY}>
-        <Container height={this.state.height}>
+        <ViewportContext.Provider value={this.state.scrollY}>
+          <Container height={this.state.height}>
+            {/*
           <LoadingScreen />
-         
-          <MainMenu />
+          */}
+            <MainMenu />
 
-          <HomePage width={this.state.width}/>
-        
-
-          <PortfolioPage />
-          { /*
-         
-
-          <HeadingSeparator text="m e e t . m e z c l a o"/>
-        
-          <AboutMezclaoPage />
-          <HeadingSeparator text="t h e . s h o p"/>
+            <HomePage width={this.state.width} />
 
 
- 
-          <ShopPage />
-          <HeadingSeparator text="m e e t . m a r i e r y"/>
+            <PortfolioPage />
+
+            <AboutMezclaoPage />
+            <ShopPage />
+           
           <AboutMarieryPage></AboutMarieryPage>
+
+          { /*
           <HeadingSeparator text="c o n t a c t . m e"/>
     
           <ContactPage />
            */ }
-          <Footer />
-        </Container>
+            <Footer />
+          </Container>
         </ViewportContext.Provider>
       </MuiThemeProvider>
     );

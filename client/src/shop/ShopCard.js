@@ -10,27 +10,28 @@ import {
 
 const Container = styled(Paper)`
     background: url(${props=>props.backgroundColor});
-    width: 340px;
-    height: 510px;
     position: relative;
-    flex-grow: 0;
+    flex-grow: 1;
+    width: 100%;
+    height: 400px;
+    border-radius: 3px;
     @media (max-width: 700px) {
-        height: 255px;
-        width: 170px;
+
     }
 `
 
 const ItemImg = styled.div`
     background-image: url(${props => props.backgroundUrl});
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    position: absolute;
     z-index: 3;
     left: 0;
     top:0;
-    height: 100%;   
-    width: 100%;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    border-radius: 3px;
 `
 
 const HoverDiv = styled.div`
@@ -46,6 +47,7 @@ const HoverDiv = styled.div`
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    border-radius: 3px;
     &:hover{
         opacity: 1;
         transition: opacity .2s ease-out;
@@ -53,7 +55,7 @@ const HoverDiv = styled.div`
 `
 
 
-const ShopCard = ({item}) => {
+const ShopCard = props => {
     const {
         background_url,
         instagram_handle,
@@ -61,18 +63,18 @@ const ShopCard = ({item}) => {
         article_name,
         shop_name,
         website_url
-    } = item;
+    } = props.item;
     return( 
         <Container>
-            <ItemImg backgroundUrl={globals.serverUrl + '/' + background_url}/>
+            <ItemImg backgroundUrl={props.item.background_url}/>
 
-            <HoverDiv backgroundColor={'#FFF'}>
-                <Typography>{article_name}</Typography>
-                <Typography>{shop_name}</Typography>
+            <HoverDiv backgroundColor={props.item.color}>
+                <Typography style={{color: 'white'}}  >{article_name}</Typography>
+                <Typography style={{color: 'white'}}  >{shop_name}</Typography>
                 <a href={instagram_url}>
-                <Typography> @{instagram_handle} </Typography>
+                <Typography style={{color: 'white'}}  > @{instagram_handle} </Typography>
                 </a>
-                <a href={website_url}>
+                <a style={{color: 'white'}} href={website_url}>
                     <WebRoundedIcon />
                 </a> 
             </HoverDiv>
