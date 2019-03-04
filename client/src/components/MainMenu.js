@@ -6,14 +6,24 @@ import {
     Toolbar,
     Typography
 } from '@material-ui/core'
+import App from '../App';
+
+const StyledAppBar = styled(AppBar)`
+    box-shadow: none !important;
+`
 
 const MyToolbar = styled(Toolbar)`
     background-color: #f83c2d;
     box-shadow: none !important;
 `;
 
-const LogoTypography = styled(Typography)`
+const LogoTypography = styled.h2`
     color: white !important;
+    font-size: 4vh;
+    font-weight: 400;
+    @media (max-width: 700px){
+        font-size: 2vh !important;
+    }
 `
 
 const Root = styled.div`
@@ -22,6 +32,7 @@ const Root = styled.div`
     position: absolute;
     top: 0;
     width: 100%;
+    
 `;
 
 const AnimatedRoot = posed(Root)({

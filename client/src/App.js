@@ -41,15 +41,14 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { width: 0, height: 0 , scrollY: 0};
+    this.state = { width: 0, height: window.innerHeight, scrollY: 0};
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
     this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
-    window.addEventListener('scroll', this.handleScroll);
+  
   }
 
   componentWillUnmount() {
@@ -58,7 +57,8 @@ class App extends Component {
   }
 
   updateWindowDimensions() {
-    this.setState({ width: window.innerWidth, height: window.innerHeight });
+    this.setState({ width: window.innerWidth, height: window.innerHeight});
+    window.removeEventListener('resize', this.updateWindowDimensions)
   }
   
   handleScroll(event){
@@ -70,14 +70,17 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
       <ViewportContext.Provider value={this.state.scrollY}>
         <Container height={this.state.height}>
-           <LoadingScreen /> 
+          <LoadingScreen />
          
           <MainMenu />
-          <Spacer height={this.state.width > 600? '64px': '56px'}></Spacer>
+
           <HomePage width={this.state.width}/>
-          <HeadingSeparator text="m y . p o r t f o l i o"/>
+        
 
           <PortfolioPage />
+          { /*
+         
+
           <HeadingSeparator text="m e e t . m e z c l a o"/>
         
           <AboutMezclaoPage />
@@ -91,6 +94,7 @@ class App extends Component {
           <HeadingSeparator text="c o n t a c t . m e"/>
     
           <ContactPage />
+           */ }
           <Footer />
         </Container>
         </ViewportContext.Provider>

@@ -5,13 +5,15 @@ import PortfolioProgress from './PortfolioProgress';
 import PortfolioButtons from './PortfolioButtons';
 import globals from '../globals';
 import ViewportContext from '../components/ViewportContext';
+import HeadingSeparator from '../components/HeadingSeparator';
+import Spacer from '../components/Spacer';
+import {Grid} from '@material-ui/core'
 
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
-  background: url('images/backgrounds/Portfolio_Bg.jpg');
-  background-size: cover;
+  height: 2000px;
+  background: #443880;  
 `;
 
 /**
@@ -32,14 +34,7 @@ class PortfolioPage extends Component {
   }
  
   switchClient(){
-    const clients = this.state.clients;
-    if(clients != []){
-      let idx = this.state.currentIndex;
-      idx ++;
-      idx %= clients.length;
-      let nextClient = clients[idx]
-      this.setState({currentClient: nextClient, currentIndex: idx});
-    }
+
   }
 
   componentDidMount(){
@@ -59,11 +54,24 @@ class PortfolioPage extends Component {
     const { clients, currentClient } = this.state;
     return (
         <Container>
-          <ViewportContext.Consumer>
-            {(scrollY) => (
-            <PortfolioCard currentClient={this.state.currentClient} y={scrollY}></PortfolioCard>
-            )}
-          </ViewportContext.Consumer>
+          <Spacer height='60px'></Spacer>
+          <HeadingSeparator text='m y . p o r t f o l i o'></HeadingSeparator>
+          <Spacer height='60px'></Spacer>
+
+          <Grid container spacing={16}>
+            <Grid item xs={12} md={6} lg={3}>
+              
+            </Grid> 
+            <Grid item xs={12} md={6} lg={3}>
+
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+
+            </Grid>
+          </Grid>
         </Container>
     )
   }

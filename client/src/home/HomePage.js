@@ -10,7 +10,7 @@ const ratio = imgHeight/imgWidth;
 
 const Container = styled.div`
   width: 100%;
-  height: ${props => props.inputHeight ? props.inputHeight : "0%"};
+  height: 100%; 
 `;
 
 class HomePage extends Component {

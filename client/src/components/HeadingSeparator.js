@@ -19,17 +19,6 @@ const StyledHeading = styled.h2`
     justify-content: center;
     align-items: center;
     text-align: center;
-
-    &:before, &:after{
-        content: '';
-        margin: 0 20px 0 0;
-        flex: 1 0 20px;
-    }
-
-    &:after{
-        margin: 0 0 0 20px;
-    }
-
 `
 
 const HeadingSeparator = ({text}) => {
