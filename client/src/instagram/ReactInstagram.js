@@ -18,13 +18,16 @@ const StyledInstagram = styled(InstagramEmbed)`
     display: flex;
     flex-direction: column;
     align-items: center;
+    iframe .Footer{
+        display: none !important;
+    }
 `
 
 const posts = [
-    {url: 'https://www.instagram.com/p/BuhUCiNHDca/'},
+    {url: 'https://www.instagram.com/p/Btqsx_5H6c1/'},
     {url: 'https://www.instagram.com/p/BubrNIYHySd/'},
-    {url: 'https://www.instagram.com/p/BgjNhTEHE9T/'},
-    {url: 'https://www.instagram.com/p/Btqsx_5H6c1/'}
+    {url: 'https://www.instagram.com/p/BoZGrg4hFQI/'},
+    {url: 'https://www.instagram.com/p/BjnXY9fARXC/'}
 ]
 
 class ReactInstagram extends React.Component{

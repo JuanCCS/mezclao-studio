@@ -4,6 +4,8 @@ import { BottomNavigation } from '@material-ui/core'
 
 import { Grid, Typography } from '@material-ui/core';
 
+import SocialMediaGrid from './SocialMediaGrid'
+
 const Container = styled.div`
   width: 100%;
   height: 300px;
@@ -31,14 +33,40 @@ const Separator = styled.div`
     width: 90%;
 `
 
-const SocialMediaContainer = styled.div`
-
-`
-
-const SocialMediaItem = styled.object`
-
-`
-
+const accounts = [
+    {
+     src:'images/social/behance.svg',
+     url:'https://www.behance.net/marieryyoung'  
+    },
+    {
+        src:'images/social/dribbble.svg',
+        url:'https://dribbble.com/marieryyoung'  
+       },
+       {
+        src:'images/social/facebook.svg',
+        url:'https://www.facebook.com/mezclaostudio/'  
+       },
+       {
+        src:'images/social/twitter.svg',
+        url:'https://twitter.com/MezclaoStudio'  
+       },
+       {
+        src:'images/social/instagram.svg',
+        url:'https://www.instagram.com/mezclaostudio/'  
+       },
+       {
+        src:'images/social/linkedin.svg',
+        url:'https://www.linkedin.com/in/mariery-young/'  
+       },
+       {
+        src:'images/social/ello.svg',
+        url:'https://ello.co/mezclaostudio'  
+       },
+       {
+        src:'images/social/Giphy.svg',
+        url:'https://giphy.com/channel/mezclaostudio'  
+       }
+]
 /**
  * Renders the Portfolio Section
  * 
@@ -57,6 +85,7 @@ class Footer extends Component {
                         <FooterColumn>
                             <ColumnTitle variant="h5">s o c i a l</ColumnTitle>
                             <Separator></Separator>
+                            <SocialMediaGrid socialMediaAccounts={accounts} />
                         </FooterColumn>
                     </Grid>
                     <Grid item md={4} xs={12}>
