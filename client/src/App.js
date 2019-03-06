@@ -13,6 +13,7 @@ import AboutMezclaoPage from './about/AboutMezclaoPage';
 import LoadingScreen from './loading/LoadingScreen';
 import AboutMarieryPage from './about/AboutMarieryPage';
 import ViewportContext from './components/ViewportContext.js';
+import ReactInstagram from './instagram/ReactInstagram';
 
 const theme = createMuiTheme({
   typography: {
@@ -70,9 +71,9 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <ViewportContext.Provider value={this.state.scrollY}>
           <Container height={this.state.height}>
-            {/*
+   {/*
           <LoadingScreen />
-          */}
+                   */}
             <MainMenu />
 
             <HomePage width={this.state.width} />
@@ -84,7 +85,7 @@ class App extends Component {
             <ShopPage />
            
           <AboutMarieryPage></AboutMarieryPage>
-
+          <ReactInstagram></ReactInstagram>
           { /*
           <HeadingSeparator text="c o n t a c t . m e"/>
     

@@ -84,7 +84,8 @@ const StyledSvg = styled.img`
 const StyledPortrait = styled.img`
   width: 100%;
   @media (max-width: 960px){
-    width: 50%;
+    max-height: 300px;
+    width: auto;
   }
 `
 
