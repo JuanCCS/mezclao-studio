@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
-import HeadingSeparator from '../components/HeadingSeparator'
-import Spacer from '../components/Spacer'
+import posed from 'react-pose';
+import HeadingSeparator from '../components/HeadingSeparator';
+import Spacer from '../components/Spacer';
 
 import { Paper, Typography } from '@material-ui/core';
 
@@ -59,6 +59,45 @@ const AboutMezclaoCTA =  styled.div`
   color: white;
 `
 
+const JaguarContainer = styled.div`
+  width: 100%;
+  height: 400px;
+  position: relative;
+`
+
+const Jaguar = styled.object`
+  left: 50%;
+  width: 400px;
+  position: absolute;
+  height: 400px;
+  margin-left: -200px;
+  z-index: 1;
+`
+
+const Eyes = styled.object`
+  left: 50%;
+  height: 7.5px;
+  margin-left: 37px;
+  top: 211px;
+  z-index: 2;
+  position: absolute; 
+`
+
+const AnimEyes = posed(Eyes)({
+  loop_enter: {
+    x: -2,
+    transition: {
+      duration: 400
+    }
+  },
+  loop_exit: {
+    x: 2,
+    transition: {
+      duration: 400
+    }
+  }
+})
+
 /**
  * Renders the About Section
  * 
@@ -67,6 +106,29 @@ class AboutMezclaoPage extends Component {
   
   constructor(props){
     super(props);
+    this.state = {
+      loopAnimState: 'loop_enter'
+    }
+    this.switchAnimationState = this.switchAnimationState.bind(this)
+  }
+
+  switchAnimationState(){
+    if(this.state.loopAnimState == 'loop_enter'){
+      this.setState({
+        loopAnimState: 'loop_exit'
+      })
+    }else{
+      this.setState({
+        loopAnimState: 'loop_enter'
+      }) 
+    }
+  }
+
+  componentDidMount(){
+    const self = this;
+    setInterval(function(){
+      self.switchAnimationState()
+    }, 2500)
   }
   
   render() {
@@ -74,6 +136,11 @@ class AboutMezclaoPage extends Component {
         <Container>
           <Spacer height='40px'></Spacer>
           <Content>
+            <JaguarContainer>
+              <Jaguar type="image/svg+xml" data="/images/about_mezclao/Jaguar.svg" >
+              </Jaguar>
+              <AnimEyes pose={this.state.loopAnimState} type="image/svg+xml" data="/images/about_mezclao/Eyes.svg" ></AnimEyes>
+            </JaguarContainer>
            <HeadingSeparator text='a b o u t . m e z c l a o'></HeadingSeparator>
           <AboutMezclaoTitle>
           m e z c l a o :
@@ -96,7 +163,7 @@ and digital campaigns from clients around the world.
           <AboutMezclaoCTA>
           <br></br>
           <br></br>
-          s e r v i c e s: 
+          s e r v i c e s : 
           <br></br>
 branding identity . illustration  .  surface design 
 <br></br>

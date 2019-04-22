@@ -6,6 +6,11 @@ import AnimatedSvg from './AnimatedSvg';
 import SplitText from 'react-pose-text';
 import { withTheme } from '@material-ui/core';
 import ScrollLock from 'react-scrolllock';
+import { withRouter } from 'react-router-dom';
+import globals from '../globals.js'
+
+import { connect } from 'react-redux';
+import {serverDataArrived} from '../redux/portfolio'
 
 const Container = styled.div`
   z-index: 20;
@@ -17,6 +22,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
 `
 
 const SvgContainer = styled.div`
@@ -78,7 +87,8 @@ const AnimWomanSvg = posed(WomanSvg)({
   fullImg: {
     opacity: 0
   },
-  end: { opacity: 0 },
+  end: { opacity: 0
+  },
 })
 
 const AnimLoadingSvg = posed(LoadingSvg)({
@@ -117,8 +127,14 @@ class LoadingScreen extends Component {
   }
 
   componentDidMount() {
-     // @TODO PREVENT SCROLLING
-     // Look into react-scrollock
+    window.scrollTo(0, 0);
+    
+    // request for portfolio and dispatch arrival
+    fetch(globals.serverUrl + '/portfolio_json').then((res)=> {
+      let json = res.json().then((portfolio)=>{
+        this.props.serverDataArrived(portfolio)
+      })
+    });
     setTimeout(() => {
       this.setState({ animState: "enter" });
     }, 1000);
@@ -131,11 +147,14 @@ class LoadingScreen extends Component {
     setTimeout(() => {
 
       this.setState({lockScroll: false})
-      
+      this.props.history.push('/home')
     }, 5200);
   }
 
   render() {
+    if(this.state.animState == 'end'){
+      return <div style={{display: 'none'}}></div>
+    }
     return (
       <AnimatedContainer pose={this.state.animState ? this.state.animState : 'enter'}>
         <Spacer heihgt={'30px'}></Spacer>
@@ -155,4 +174,11 @@ class LoadingScreen extends Component {
   }
 }
 
-export default LoadingScreen;
+
+const mapDispatchToProps = dispatch => ({
+  serverDataArrived: payload => dispatch(serverDataArrived(payload))
+})
+
+const reduxedComponent = connect(null, mapDispatchToProps)(LoadingScreen)
+
+export default withRouter(reduxedComponent);

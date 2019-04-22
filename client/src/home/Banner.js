@@ -7,7 +7,7 @@ import { green } from '@material-ui/core/colors';
 
 const RootContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: ${props => props.height? props.height + 'px' : '100%'};
   position: relative;
 `;
 
@@ -65,8 +65,8 @@ class Banner extends Component {
 
   render() {
     return (
-      <AnimRootContainer pose={this.state.animState? this.state.animState : "start"}>
-        <BannerSlideOne></BannerSlideOne>
+      <AnimRootContainer pose={this.state.animState? this.state.animState : "start"} height={this.props.height}>
+        <BannerSlideOne height={this.props.height}></BannerSlideOne>
       </AnimRootContainer>
     );
   }

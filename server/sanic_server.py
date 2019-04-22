@@ -8,11 +8,10 @@ import asyncio
 app = Sanic()
 CORS(app)
 
-db_path = 'db'
-shop_path = 'shop/shop.json'
-shop_images_path = 'shop_images'
+portfolio_db_path = 'portfolio.json'
 
 def make_file_route(name,route,res_file):
+    print(route)
     @app.route(route)
     def _method(self):
         return response.file(res_file)
@@ -24,56 +23,29 @@ def make_json_route(name,route,res_json):
         return response.json(res_json)
     return _method
 
-def make_client_routes(json_obj, file_name):
-    portfolio_route = os.path.join('./portfolio', file_name)
-    pics = os.listdir(portfolio_route)
-    json_obj['pics'] = pics
-    client_route = os.path.join('/clients', file_name)
-    _json_route = make_json_route(file_name, client_route, json_obj)
-    setattr(app, file_name, _json_route)
-    index = 0
-    for pic in json_obj['pics']:
-        index += 1
-        pic_path = os.path.join(portfolio_route, pic)
-        pic_route = os.path.join('pics',file_name, pic)
-        _dynamic_route = make_file_route(pic + str(index) + file_name, pic_route, pic_path)
-        setattr(app, pic + str(index) + file_name, _dynamic_route)
+def make_client_routes(json_obj):
+    return ''
 
+def make_category_routes(json_obj):
+    for category_name in json_obj['categories']:
+        make_file_route(os.path.join(category_name, 'cover'), os.path.join(category_name, 'cover'), json_obj[category_name]['cover'])
+        for client_name in json_obj[category_name]['clients']:
+            make_file_route(os.path.join(client_name, json_obj[client_name]['cover']), os.path.join(client_name, json_obj[client_name]['cover']), json_obj[client_name]['cover'])
+            for file_name in json_obj[client_name]['files']:
+                print(os.path.join(category_name, client_name, file_name))
+                make_file_route(os.path.join(category_name, client_name, file_name), os.path.join(category_name, client_name, file_name), json_obj[file_name])
+    return ''
 def make_server():
-    dirs = os.listdir(db_path)
-    names = []
-    for json_file in dirs:
-        file_path = os.path.join(db_path,json_file)
-        file_name = os.path.splitext(json_file)[0]
-        names.append(file_name)
-        with open(file_path) as client_file:
-            json_obj = json.load(client_file)
-            make_client_routes(json_obj, file_name)
 
-    @app.route('/clientnames')
-    def client_names(req):
-        return response.json({'clients': names})
-    
-    for f in os.listdir('./shop_images'):
-        r = f.replace(" ","")
-        if( r != f):
-            os.rename(os.path.join('./shop_images',f),os.path.join('./shop_images',r))
+    with open(portfolio_db_path) as portfolio_json:
+        portfolio_data = json.load(portfolio_json) 
 
-    with open(shop_path) as shop_json:
-        shop_data = json.load(shop_json) 
-        shop_route = './shop_images'
+    @app.route('/portfolio_json')
+    def get_portfolio(req):
+        return response.json(portfolio_data)
 
-        for shop in shop_data['items']:
-            item_name = shop['article_name'] + shop['shop_name']
-            item_name = item_name.replace(" ","")
-            pic_path = os.path.join(shop_route, item_name+'.jpg')
-            pic_route = os.path.join('shop_pics', item_name)
-            shop['background_url'] = pic_route
-            make_file_route(item_name, pic_route, pic_path)
+    make_category_routes(portfolio_data)
 
-        @app.route('/shopitems')
-        def shop_items(req):
-            return response.json(shop_data)
 
     app.run(host='localhost', port=8000)
 

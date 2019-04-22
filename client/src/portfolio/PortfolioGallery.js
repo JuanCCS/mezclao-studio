@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import posed from 'react-pose';
 import globals from '../globals';
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import GalleryCard from '../components/GalleryCard'
+import {Grid} from '@material-ui/core'
+import ClientView from './ClientView'
+
+import {clientSelected, nextClient, prevClient} from '../redux/portfolio'
+
 
 const RootContainer = styled.div`
   display: flex;
@@ -9,10 +17,14 @@ const RootContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+  padding-top: 103.4px;
+  @media (max-width: 700px){
+    padding-top: 64px;
+  }
+  @media (max-width: 600px){
+    padding-top: 58px;
+  }
 `;
-
-const CurrentImageContainer = styled.div`
-`
 
 const CurrentImage = styled.img`
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -43,55 +55,72 @@ class PortfolioGallery extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { 
-      animState: 'start',
-      start: true,
-      currentPic: null,
-      prevPic: null,
-      currentIndex: 0,
-      pics: ''
+    this.state = {
+      animPose: 'exit'
     };
+    this.handleGalleryCardSelected = this.handleGalleryCardSelected.bind(this)
+    this.handleCloseClient = this.handleCloseClient.bind(this)
   }
 
-
-
-  switchPic(){
-    const pics = this.props.pics;
-    if(pics != undefined){
-      let idx = this.state.currentIndex;
-      idx ++;
-      idx %= pics.length;
-      let nextPic = pics[idx]
-      this.setState({animState: 'start', prevPic: this.state.currentPic, currentPic: nextPic, currentIndex: idx});
-    }
-
-    setTimeout(()=>{
-      this.setState({animState:'enter'})}, 400)
-      setTimeout(()=>{
-        this.setState({animState:'exit'})}, 1600)
+  handleGalleryCardSelected(payload){
+    console.log(payload)
+    // notify redux store
+    this.props.clientSelected(payload)
+    // show client view
+    this.setState({animPose: 'enter'})
   }
 
-  componentDidMount() {
-      setInterval(()=>{
-        this.switchPic.call(this)
-      },2000)
+  handleCloseClient(){
+    this.setState({animPose: 'exit'})
   }
 
-  componentDidUpdate(prevProps, prevState){
-      if(prevProps.currentClient != this.props.currentClient){
-        this.setState({currentPic: this.props.initialPic, currentIndex: 0})
-      }
-  }
 
   render() {
-    let picPath = globals.serverUrl + '/pics/' + this.props.currentClient + '/' + this.state.currentPic;
+    let clients = <div></div>
+    const self= this;
+    const category = this.props.category.name
+    const portfolio = this.props.portfolio
+    const clientNames = portfolio[category]['clients']
+    console.log(this.props.selectedClient)
+    if(clientNames != undefined){
+    clients = clientNames.map(elem => {
+        let fileRoute = elem + '/cover'
+        return(
+          <Grid item xs={6} md={3}>
+            <GalleryCard 
+              handleGalleryCardSelected={self.handleGalleryCardSelected}
+              categoryName={category.name} 
+              clientName={elem}
+              clientObj={portfolio[elem]} 
+              fileRoute={fileRoute}>
+            </GalleryCard>
+           </Grid>
+    )})}
+
     return (
       <RootContainer>
-          <AnimatedImage pose={this.state.animState} src={this.state.currentPic ? picPath: 'favicon.ico'}>
-          </AnimatedImage>
-          </RootContainer>
+        <Grid container >
+          {clients}
+        </Grid>
+        <ClientView 
+          animPose={this.state.animPose} >
+        </ClientView>
+     </RootContainer>
     );
   }
 }
 
-export default PortfolioGallery;
+const mapStateToProps = ({portfolio}) => ({
+  category: portfolio.selectedCategory,
+  portfolio: portfolio.portfolioJson,
+  selectedClient: portfolio.selectedClient
+})
+
+const mapDispatchToProps = dispatch => ({
+  clientSelected : payload => dispatch(clientSelected(payload))
+
+})
+  
+const reduxedComponent = connect(mapStateToProps, mapDispatchToProps)(PortfolioGallery);
+
+export default withRouter(reduxedComponent);

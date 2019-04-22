@@ -8,7 +8,9 @@ import ViewportContext from '../components/ViewportContext';
 import HeadingSeparator from '../components/HeadingSeparator';
 import Spacer from '../components/Spacer';
 import {Grid} from '@material-ui/core'
+import { connect } from 'react-redux';
 
+import {serverDataArrived} from '../redux/portfolio'
 
 const Container = styled.div`
   width: 100%;
@@ -84,11 +86,12 @@ class PortfolioPage extends Component {
   }
 
   componentDidMount(){
-    fetch(globals.serverUrl + '/clientnames').then((res)=> {
-      let json = res.json().then((clientObj)=>{
-        this.setState({clients: clientObj.clients, currentClient: clientObj.clients[0]})
+
+    fetch(globals.serverUrl + '/portfolio_json').then((res)=> {
+      let json = res.json().then((portfolio)=>{
+        this.props.serverDataArrived(portfolio)
       })
-    });
+    });   
 
     setInterval(
       setInterval(()=>{
@@ -98,9 +101,13 @@ class PortfolioPage extends Component {
 
   render() {
     const { clients, currentClient } = this.state;
-    const categories = Categories.map( elem => {
+    const myPortfolio = this.props.portfolio.portfolio;
+   
+    const categories = myPortfolio.portfolioJson.categories.map( elem => {
+      let catObj = myPortfolio.portfolioJson[elem]
+      catObj.name = elem
       return (<Grid item xs={6} s={6} md={3}>
-      <PortfolioCard category={elem}>
+      <PortfolioCard category={catObj}>
       </PortfolioCard>
       </Grid>)
     })
@@ -110,7 +117,7 @@ class PortfolioPage extends Component {
           <HeadingSeparator text='o u r . p r o j e c t s'></HeadingSeparator>
           <Spacer height='60px'></Spacer>
 
-          <GridContainer container spacing={16} alignItems='center' justify='space-evenly'>
+          <GridContainer container spacing={0} alignItems='center' justify='space-evenly'>
             {categories}
           </GridContainer>
         </Container>
@@ -120,4 +127,13 @@ class PortfolioPage extends Component {
 
 PortfolioPage.contextType = ViewportContext;
 
-export default PortfolioPage;
+const mapDispatchToProps = dispatch => ({
+  serverDataArrived: payload => dispatch(serverDataArrived(payload))
+})
+
+// start of code change
+const mapStateToProps = (portfolio) => {
+  return { portfolio: portfolio };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PortfolioPage);

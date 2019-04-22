@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react'
+import styled from 'styled-components'
 import { BottomNavigation } from '@material-ui/core'
-
-import { Grid, Typography } from '@material-ui/core';
-
+import Spacer from '../components/Spacer'
+import Newsletter from '../components/Newsletter'
+import NavigationMenu from '../components/NavigationMenu'
+import { Grid, Typography } from '@material-ui/core'
 import SocialMediaGrid from './SocialMediaGrid'
 
 const Container = styled.div`
   width: 100%;
-  height: 300px;
   display: flex;
-  background-color: #723485;
+  background-color: #f83c2d;
+  padding: 0;
 `;
 
 const FooterColumn = styled.div`
     width: 100%;
-    height: 100%;
+    padding: 0;
     color: #FFFFFF;
     display: flex;
     flex-direction: column;
@@ -67,6 +68,13 @@ const accounts = [
         url:'https://giphy.com/channel/mezclaostudio'  
        }
 ]
+
+const FooterMenuContainer = styled.div`
+    padding-top: 20px;
+    width: 100%;
+    max-height: 300px;
+`
+
 /**
  * Renders the Portfolio Section
  * 
@@ -80,11 +88,12 @@ class Footer extends Component {
     render() {
         return (
             <Container>
-                <Grid container spacing={24}>
+                <Grid container spacing={24} style={{padding: '0px', margin: '0px'}}>
                     <Grid item md={4} xs={12} >
                         <FooterColumn>
                             <ColumnTitle variant="h5">s o c i a l</ColumnTitle>
                             <Separator></Separator>
+                            <Spacer height="20px" />
                             <SocialMediaGrid socialMediaAccounts={accounts} />
                         </FooterColumn>
                     </Grid>
@@ -92,12 +101,17 @@ class Footer extends Component {
                         <FooterColumn>
                             <ColumnTitle variant="h5">m e n u</ColumnTitle>
                             <Separator></Separator>
+                            <FooterMenuContainer>
+                                <NavigationMenu />
+                            </FooterMenuContainer>
                         </FooterColumn>
                     </Grid>
                     <Grid item md={4} xs={12}>
                         <FooterColumn>
                             <ColumnTitle variant="h5">n e w s l e t t e r</ColumnTitle>
                             <Separator></Separator>
+                            <Spacer height='20px' />
+                            <Newsletter></Newsletter>
                         </FooterColumn>
                     </Grid>
                 </Grid>

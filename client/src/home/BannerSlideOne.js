@@ -21,10 +21,11 @@ const RootContainer = styled.div`
 
 const Container = styled.div`
   width: 100%;
-  /* height: ${props => props.height ? props.height + 'px' : "80%"}; 
-  */
+  
+  height: ${props => props.height ? props.height + 'px !important' : "80%"}; 
+  
   height: 100%;
-  background-color: '#f83c2d';
+  background: #f83c2d !important;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -77,7 +78,7 @@ const AnimSunSvg = posed(SunSvg)({
 
 const TucanSvg = styled.object`
   position: absolute;
-  right: 20px;
+  right: 40px;
   bottom: 20px;
   width: 440px;
   height: 500px;
@@ -180,7 +181,7 @@ class BannerSlideOne extends Component {
       self.setState({
         animState: 'enter'
       })
-    }, 6000)
+    }, 500)
   }
 
   render() {
@@ -191,7 +192,7 @@ class BannerSlideOne extends Component {
     }
 
     return (
-      <AnimRootContainer>
+      <AnimRootContainer height={this.props.height}>
       <Container> 
         <Spacer height='60px'></Spacer>
       { /*

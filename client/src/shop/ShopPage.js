@@ -109,11 +109,7 @@ const items = [
 class ShopPage extends Component {
 
   componentDidMount(){
-    fetch(globals.serverUrl + '/shopitems').then((res)=> {
-      let json = res.json().then((itemsObj)=>{
-        this.setState({items: itemsObj.items})
-      })
-    });
+    
   }
   
   constructor(props){

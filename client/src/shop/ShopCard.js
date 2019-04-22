@@ -64,6 +64,7 @@ const ShopCard = props => {
         shop_name,
         website_url
     } = props.item;
+    
     return( 
         <Container>
             <ItemImg backgroundUrl={props.item.background_url}/>

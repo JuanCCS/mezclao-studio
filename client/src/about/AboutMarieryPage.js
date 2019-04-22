@@ -36,6 +36,10 @@ const AboutMezclaoText = styled.div`
   padding-top: 10px;
   color: white;
   font-weight: 400;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `
 
 const AboutMezclaoCTA =  styled.div`    
@@ -113,8 +117,8 @@ class AboutMarieryPage extends Component {
        
         <Content container spacing={16}>
         <Grid  item xs={12} s={12} md={4} lg={4}>  
-          <StyledPortrait src='images/about_mariery/mariery.jpg' />
-        </Grid>
+          <StyledPortrait src='images/about_mariery/mariery.png' />
+        </Grid> 
           <Grid itemitem xs={12} s={12} md={7} lg={7}>
           
         <AboutMezclaoText>

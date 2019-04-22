@@ -10,7 +10,7 @@ const ratio = imgHeight/imgWidth;
 
 const Container = styled.div`
   width: 100%;
-  height: 100%; 
+  min-height: ${props=> props.rootHeight? props.rootHeight + 'px': '80%'}; 
 `;
 
 class HomePage extends Component {
@@ -20,11 +20,11 @@ class HomePage extends Component {
   }
   
   render() {
-    const rootHeight = this.props.width * ratio;
+    const rootHeight = window.innerHeight;
 
     return (
-        <Container inputHeight={Math.floor(rootHeight) + 'px'}>
-          <Banner/>
+        <Container rootHeight={rootHeight} >
+          <Banner height={rootHeight} />
         </Container>
     )
   }

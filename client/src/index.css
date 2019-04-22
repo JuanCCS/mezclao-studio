@@ -1,4 +1,4 @@
-body {
+body, html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -8,7 +8,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100% !important;
+  height: 100% !important;
 }
+
+body::-webkit-scrollbar {display:none !important;}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -17,4 +21,8 @@ code {
 
 header {
   box-shadow: none !important;
+}
+
+#root {
+  min-height: 100%;
 }
